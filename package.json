@@ -1,0 +1,23 @@
+{
+  "name": "neurox-vpn",
+  "version": "1.0.0",
+  "description": "NeuroX🚀 VPN - Telegram Mini App",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "keywords": ["vpn", "telegram", "mini-app", "neurox"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@emotion/react": "^11.11.0",
+    "@mantine/core": "^6.0.0",
+    "@mantine/hooks": "^6.0.0",
+    "next": "^13.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}

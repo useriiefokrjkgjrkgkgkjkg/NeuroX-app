@@ -15,18 +15,16 @@ export default function Home() {
       }
       
       WebApp.setBackgroundColor('#161616');
+
+      // Показываем стикер
+      WebApp.showSticker({
+        sticker: "CAACAgIAAxkBAAIVVWfw_ZV2RS1YDg-TjEX78ckJUyytAAJFawACqvuJS9YcRfTFBNEvNgQ"
+      });
     }
   }, []);
 
   return (
     <div className="container">
-      <div 
-        className="sticker"
-        dangerouslySetInnerHTML={{
-          __html: `<tg-sticker sticker="CAACAgIAAxkBAAIVVWfw_ZV2RS1YDg-TjEX78ckJUyytAAJFawACqvuJS9YcRfTFBNEvNgQ"></tg-sticker>`
-        }}
-      />
-
       <style jsx>{`
         .container {
           display: flex;
@@ -39,10 +37,6 @@ export default function Home() {
           left: 0;
           background: #161616;
           touch-action: none;
-        }
-        .sticker {
-          width: 256px;
-          height: 256px;
         }
       `}</style>
     </div>

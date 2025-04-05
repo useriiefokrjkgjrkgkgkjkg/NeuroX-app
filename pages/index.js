@@ -4,27 +4,25 @@ export default function Home() {
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const WebApp = window.Telegram.WebApp;
+      
+      // Инициализация и расширение
       WebApp.ready();
       WebApp.expand();
       
-      // Подписываемся на изменение темы
-      WebApp.onEvent('themeChanged', () => {
-        document.documentElement.style.setProperty('--bg-color', WebApp.backgroundColor);
-      });
+      // Включаем полноэкранный режим
+      if (WebApp.isVersionAtLeast('6.1')) {
+        WebApp.requestViewport({ height: '100%' });
+        WebApp.setViewportSettings({ height: '100%' });
+      }
+      
+      WebApp.setBackgroundColor('#161616');
     }
   }, []);
 
   const handleConnect = () => {
     if (typeof window !== 'undefined') {
       const WebApp = window.Telegram.WebApp;
-      WebApp.showPopup({
-        title: 'Подключение VPN',
-        message: 'Начинаем подключение к VPN серверу...',
-        buttons: [{
-          type: 'ok',
-          text: 'OK'
-        }]
-      });
+      WebApp.showAlert('Начинаем подключение к VPN серверу...');
     }
   };
 
@@ -41,11 +39,15 @@ export default function Home() {
           justify-content: center;
           height: 100vh;
           width: 100vw;
-          background: var(--bg-color);
+          position: fixed;
+          top: 0;
+          left: 0;
+          background: #161616;
+          touch-action: none;
         }
         button {
-          background: var(--button-color);
-          color: var(--button-text-color);
+          background: #3390ec;
+          color: white;
           border: none;
           padding: 15px 30px;
           font-size: 16px;

@@ -20,10 +20,11 @@ export default function Home() {
 
   return (
     <div className="container">
-      <img 
-        src="https://raw.githubusercontent.com/TelegramMessenger/telegramkit/main/Assets/Stickers/Regular/CAACAgIAAxkBAAIVVWfw_ZV2RS1YDg-TjEX78ckJUyytAAJFawACqvuJS9YcRfTFBNEvNgQ.webp" 
-        alt="Telegram Sticker"
+      <div 
         className="sticker"
+        dangerouslySetInnerHTML={{
+          __html: `<tg-sticker sticker="CAACAgIAAxkBAAIVVWfw_ZV2RS1YDg-TjEX78ckJUyytAAJFawACqvuJS9YcRfTFBNEvNgQ"></tg-sticker>`
+        }}
       />
 
       <style jsx>{`
@@ -42,19 +43,6 @@ export default function Home() {
         .sticker {
           width: 256px;
           height: 256px;
-          object-fit: contain;
-          animation: float 3s ease-in-out infinite;
-        }
-        @keyframes float {
-          0% {
-            transform: translateY(0px);
-          }
-          50% {
-            transform: translateY(-20px);
-          }
-          100% {
-            transform: translateY(0px);
-          }
         }
       `}</style>
     </div>

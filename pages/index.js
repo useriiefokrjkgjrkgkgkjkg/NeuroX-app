@@ -2,34 +2,25 @@ import { useEffect } from 'react';
 
 export default function Home() {
   useEffect(() => {
-    try {
-      if (typeof window !== 'undefined' && window.Telegram && window.Telegram.WebApp) {
-        const WebApp = window.Telegram.WebApp;
-        
-        // Инициализация и расширение
-        WebApp.ready();
-        WebApp.expand();
-        
-        // Включаем полноэкранный режим
-        if (WebApp.isVersionAtLeast('6.1')) {
-          WebApp.requestViewport({ height: '100%' });
-          WebApp.setViewportSettings({ height: '100%' });
-        }
-        
-        WebApp.setBackgroundColor('#161616');
+    if (typeof window !== 'undefined' && window.Telegram && window.Telegram.WebApp) {
+      const WebApp = window.Telegram.WebApp;
+      
+      // Инициализация
+      WebApp.ready();
+      WebApp.expand();
+      
+      // Включаем полноэкранный режим
+      if (WebApp.viewport && WebApp.viewport.requestFullscreen && WebApp.viewport.requestFullscreen.isAvailable()) {
+        WebApp.viewport.requestFullscreen();
       }
-    } catch (error) {
-      console.error('Error initializing WebApp:', error);
+      
+      WebApp.setBackgroundColor('#161616');
     }
   }, []);
 
   const handleConnect = () => {
-    try {
-      if (typeof window !== 'undefined' && window.Telegram && window.Telegram.WebApp) {
-        window.Telegram.WebApp.showAlert('Начинаем подключение к VPN серверу...');
-      }
-    } catch (error) {
-      console.error('Error showing alert:', error);
+    if (typeof window !== 'undefined' && window.Telegram && window.Telegram.WebApp) {
+      window.Telegram.WebApp.showAlert('Начинаем подключение к VPN серверу...');
     }
   };
 

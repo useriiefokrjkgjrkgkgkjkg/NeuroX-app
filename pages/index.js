@@ -2,27 +2,34 @@ import { useEffect } from 'react';
 
 export default function Home() {
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const WebApp = window.Telegram.WebApp;
-      
-      // Инициализация и расширение
-      WebApp.ready();
-      WebApp.expand();
-      
-      // Включаем полноэкранный режим
-      if (WebApp.isVersionAtLeast('6.1')) {
-        WebApp.requestViewport({ height: '100%' });
-        WebApp.setViewportSettings({ height: '100%' });
+    try {
+      if (typeof window !== 'undefined' && window.Telegram && window.Telegram.WebApp) {
+        const WebApp = window.Telegram.WebApp;
+        
+        // Инициализация и расширение
+        WebApp.ready();
+        WebApp.expand();
+        
+        // Включаем полноэкранный режим
+        if (WebApp.isVersionAtLeast('6.1')) {
+          WebApp.requestViewport({ height: '100%' });
+          WebApp.setViewportSettings({ height: '100%' });
+        }
+        
+        WebApp.setBackgroundColor('#161616');
       }
-      
-      WebApp.setBackgroundColor('#161616');
+    } catch (error) {
+      console.error('Error initializing WebApp:', error);
     }
   }, []);
 
   const handleConnect = () => {
-    if (typeof window !== 'undefined') {
-      const WebApp = window.Telegram.WebApp;
-      WebApp.showAlert('Начинаем подключение к VPN серверу...');
+    try {
+      if (typeof window !== 'undefined' && window.Telegram && window.Telegram.WebApp) {
+        window.Telegram.WebApp.showAlert('Начинаем подключение к VPN серверу...');
+      }
+    } catch (error) {
+      console.error('Error showing alert:', error);
     }
   };
 

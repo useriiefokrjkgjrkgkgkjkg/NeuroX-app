@@ -2,44 +2,59 @@ import { useEffect } from 'react';
 
 export default function Home() {
   useEffect(() => {
-    if (typeof window !== 'undefined') {
+    if (typeof window !== 'undefined' && window.Telegram && window.Telegram.WebApp) {
       const WebApp = window.Telegram.WebApp;
+      
+      // Инициализация
       WebApp.ready();
+      WebApp.expand();
+      
+      // Включаем полноэкранный режим
+      if (WebApp.viewport && WebApp.viewport.requestFullscreen && WebApp.viewport.requestFullscreen.isAvailable()) {
+        WebApp.viewport.requestFullscreen();
+      }
+      
+      WebApp.setBackgroundColor('#161616');
     }
   }, []);
 
-  const handleConnect = () => {
-    if (typeof window !== 'undefined') {
-      const WebApp = window.Telegram.WebApp;
-      WebApp.showAlert('Подключение...');
-    }
-  };
-
   return (
     <div className="container">
-      <button onClick={handleConnect}>
-        🔒 Подключиться к VPN
-      </button>
+      <img 
+        src="https://raw.githubusercontent.com/TelegramMessenger/telegramkit/main/Assets/Stickers/Regular/CAACAgIAAxkBAAIVVWfw_ZV2RS1YDg-TjEX78ckJUyytAAJFawACqvuJS9YcRfTFBNEvNgQ.webp" 
+        alt="Telegram Sticker"
+        className="sticker"
+      />
 
       <style jsx>{`
         .container {
-          min-height: 100vh;
           display: flex;
           align-items: center;
           justify-content: center;
+          height: 100vh;
+          width: 100vw;
+          position: fixed;
+          top: 0;
+          left: 0;
           background: #161616;
+          touch-action: none;
         }
-        button {
-          background: none;
-          border: 2px solid #fff;
-          color: #fff;
-          padding: 15px 30px;
-          font-size: 18px;
-          border-radius: 10px;
-          cursor: pointer;
+        .sticker {
+          width: 256px;
+          height: 256px;
+          object-fit: contain;
+          animation: float 3s ease-in-out infinite;
         }
-        button:hover {
-          background: rgba(255, 255, 255, 0.1);
+        @keyframes float {
+          0% {
+            transform: translateY(0px);
+          }
+          50% {
+            transform: translateY(-20px);
+          }
+          100% {
+            transform: translateY(0px);
+          }
         }
       `}</style>
     </div>

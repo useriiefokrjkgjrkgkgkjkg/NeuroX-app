@@ -1,16 +1,25 @@
 import { useEffect } from 'react';
-import WebApp from '@twa-dev/sdk';
 
 export default function Home() {
   useEffect(() => {
-    WebApp.ready();
+    if (typeof window !== 'undefined') {
+      const WebApp = window.Telegram.WebApp;
+      WebApp.ready();
+    }
   }, []);
+
+  const handleConnect = () => {
+    if (typeof window !== 'undefined') {
+      const WebApp = window.Telegram.WebApp;
+      WebApp.showAlert('Подключение...');
+    }
+  };
 
   return (
     <div className="container">
       <h1>🌐 NeuroX🚀 VPN</h1>
       <p>Быстрое и безопасное подключение к VPN</p>
-      <button onClick={() => WebApp.showAlert('Подключение...')}>
+      <button onClick={handleConnect}>
         🔒 Подключиться к VPN
       </button>
 

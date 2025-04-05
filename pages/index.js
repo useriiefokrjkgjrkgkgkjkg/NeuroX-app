@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import Image from 'next/image';
 
 export default function Home() {
   useEffect(() => {
@@ -23,7 +22,7 @@ export default function Home() {
     <div className="container">
       <div className="sticker-container">
         <img 
-          src="https://cdn.tlgrm.app/stickers/CAACAgIAAxkBAAIVVWfw_ZV2RS1YDg-TjEX78ckJUyytAAJFawACqvuJS9YcRfTFBNEvNgQ.webp"
+          src="https://imgur.com/TtccKxQ.png"
           alt="Sticker"
           className="sticker"
         />
@@ -43,8 +42,8 @@ export default function Home() {
           touch-action: none;
         }
         .sticker-container {
-          width: 180px;
-          height: 180px;
+          width: 256px;
+          height: 256px;
           display: flex;
           align-items: center;
           justify-content: center;

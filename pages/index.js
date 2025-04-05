@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import Image from 'next/image';
 
 export default function Home() {
   useEffect(() => {
@@ -15,16 +16,19 @@ export default function Home() {
       }
       
       WebApp.setBackgroundColor('#161616');
-
-      // Показываем стикер
-      WebApp.showSticker({
-        sticker: "CAACAgIAAxkBAAIVVWfw_ZV2RS1YDg-TjEX78ckJUyytAAJFawACqvuJS9YcRfTFBNEvNgQ"
-      });
     }
   }, []);
 
   return (
     <div className="container">
+      <div className="sticker-container">
+        <img 
+          src="https://cdn.tlgrm.app/stickers/CAACAgIAAxkBAAIVVWfw_ZV2RS1YDg-TjEX78ckJUyytAAJFawACqvuJS9YcRfTFBNEvNgQ.webp"
+          alt="Sticker"
+          className="sticker"
+        />
+      </div>
+
       <style jsx>{`
         .container {
           display: flex;
@@ -37,6 +41,18 @@ export default function Home() {
           left: 0;
           background: #161616;
           touch-action: none;
+        }
+        .sticker-container {
+          width: 180px;
+          height: 180px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .sticker {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
         }
       `}</style>
     </div>

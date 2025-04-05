@@ -6,7 +6,7 @@
   "framework": "nextjs",
   "regions": ["fra1"],
   "env": {
-    "NEXT_PUBLIC_BOT_USERNAME": "@neuroclassbot",
-    "NEXT_PUBLIC_APP_URL": "https://neurox-vpn-app1.vercel.app"
+    "NEXT_PUBLIC_BOT_USERNAME": "neuroclassbot",
+    "NEXT_PUBLIC_APP_URL": "https://neurox-app178.vercel.app"
   }
 } 

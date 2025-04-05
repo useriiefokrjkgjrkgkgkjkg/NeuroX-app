@@ -4,22 +4,27 @@ export default function Home() {
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const WebApp = window.Telegram.WebApp;
-      // Растягиваем на весь экран
-      WebApp.expand();
-      // Скрываем стандартные кнопки
-      WebApp.MainButton.hide();
-      WebApp.BackButton.hide();
-      // Устанавливаем цвет фона
-      WebApp.setBackgroundColor('#161616');
-      // Сообщаем что приложение готово
       WebApp.ready();
+      WebApp.expand();
+      
+      // Подписываемся на изменение темы
+      WebApp.onEvent('themeChanged', () => {
+        document.documentElement.style.setProperty('--bg-color', WebApp.backgroundColor);
+      });
     }
   }, []);
 
   const handleConnect = () => {
     if (typeof window !== 'undefined') {
       const WebApp = window.Telegram.WebApp;
-      WebApp.showAlert('Подключение...');
+      WebApp.showPopup({
+        title: 'Подключение VPN',
+        message: 'Начинаем подключение к VPN серверу...',
+        buttons: [{
+          type: 'ok',
+          text: 'OK'
+        }]
+      });
     }
   };
 
@@ -31,32 +36,22 @@ export default function Home() {
 
       <style jsx>{`
         .container {
-          position: fixed;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
           display: flex;
           align-items: center;
           justify-content: center;
-          background: #161616;
-          touch-action: none;
-          -webkit-user-select: none;
-          user-select: none;
+          height: 100vh;
+          width: 100vw;
+          background: var(--bg-color);
         }
         button {
-          background: none;
-          border: 2px solid #fff;
-          color: #fff;
+          background: var(--button-color);
+          color: var(--button-text-color);
+          border: none;
           padding: 15px 30px;
-          font-size: 18px;
-          border-radius: 10px;
+          font-size: 16px;
+          border-radius: 8px;
           cursor: pointer;
-          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-          -webkit-tap-highlight-color: transparent;
-        }
-        button:hover {
-          background: rgba(255, 255, 255, 0.1);
+          font-family: inherit;
         }
         button:active {
           transform: scale(0.98);

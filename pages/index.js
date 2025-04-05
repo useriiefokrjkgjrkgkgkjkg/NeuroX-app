@@ -9,6 +9,8 @@ export default function Home() {
       // Скрываем стандартные кнопки
       WebApp.MainButton.hide();
       WebApp.BackButton.hide();
+      // Устанавливаем цвет фона
+      WebApp.setBackgroundColor('#161616');
       // Сообщаем что приложение готово
       WebApp.ready();
     }
@@ -27,24 +29,20 @@ export default function Home() {
         🔒 Подключиться к VPN
       </button>
 
-      <style jsx global>{`
-        body {
-          margin: 0;
-          padding: 0;
-        }
-      `}</style>
-
       <style jsx>{`
         .container {
-          min-height: 100vh;
-          width: 100vw;
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
           display: flex;
           align-items: center;
           justify-content: center;
           background: #161616;
-          margin: 0;
-          padding: 0;
-          box-sizing: border-box;
+          touch-action: none;
+          -webkit-user-select: none;
+          user-select: none;
         }
         button {
           background: none;
@@ -55,6 +53,7 @@ export default function Home() {
           border-radius: 10px;
           cursor: pointer;
           font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+          -webkit-tap-highlight-color: transparent;
         }
         button:hover {
           background: rgba(255, 255, 255, 0.1);
